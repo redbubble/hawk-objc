@@ -63,6 +63,7 @@ typedef NS_ENUM(NSUInteger, HawkAuthType) {
 #pragma mark -
 
 - (NSString *)requestHeader;
+- (NSString *)requestHeaderWithAuthorizationLabel:(BOOL)withAuthorizationLabel;
 
 - (NSString *)responseHeader;
 

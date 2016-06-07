@@ -139,10 +139,20 @@
 
 - (NSString *)requestHeader
 {
+    return [self requestHeaderWithAuthorizationLabel:YES];
+}
+
+- (NSString *)requestHeaderWithAuthorizationLabel:(BOOL)withAuthorizationLabel
+{
     NSMutableString* header = [NSMutableString string];
+    
+    // label
+    if (withAuthorizationLabel == YES) {
+        [header appendString:[NSString stringWithFormat:@"Authorization: "]];
+    }
 
     // id
-    [header appendString:[NSString stringWithFormat:@"Authorization: Hawk id=\"%@\"", self.credentials.hawkId]];
+    [header appendString:[NSString stringWithFormat:@"Hawk id=\"%@\"", self.credentials.hawkId]];
 
     // mac
     [header appendString:[NSString stringWithFormat:@", mac=\"%@\"", [self hmacWithType:HawkAuthTypeHeader]]];

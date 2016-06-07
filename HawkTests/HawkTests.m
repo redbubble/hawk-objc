@@ -164,6 +164,21 @@
     NSString *header = [auth requestHeader];
 
     XCTAssertEqualObjects(header, expectedHeader);
+    
+}
+
+- (void)testAuthorizationHeaderWithoutLabel
+{
+    NSString *expectedHeader = @"Hawk id=\"exqbZWtykFZIh2D7cXi9dA\", mac=\"2sttHCQJG9ejj1x7eCi35FP23Miu9VtlaUgwk68DTpM=\", ts=\"1368996800\", nonce=\"3yuYCD4Z\", hash=\"neQFHgYKl/jFqDINrC21uLS0gkFglTz789rzcSr7HYU=\", app=\"wn6yzHGe5TLaT-fvOPbAyQ\"";
+    
+    auth.app = @"wn6yzHGe5TLaT-fvOPbAyQ";
+    auth.nonce = @"3yuYCD4Z";
+    auth.timestamp = [NSDate dateWithTimeIntervalSince1970:1368996800];
+    
+    NSString *header = [auth requestHeaderWithAuthorizationLabel:NO];
+    
+    XCTAssertEqualObjects(header, expectedHeader);
+    
 }
 
 - (void)testAuthorizationHeaderValidation
