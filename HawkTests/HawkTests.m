@@ -7,8 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "HawkAuth.h"
-#import "NSString+Base64.h"
+#import <Hawk/Hawk.h>
 
 @interface HawkTests : XCTestCase
 {
